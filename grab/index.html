@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <title>Grab 'n' Go Adventure — mini | ANNABLOX</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared/engine.css">
+  <link rel="stylesheet" href="grab.css">
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+  </script>
+</head>
+<body>
+  <canvas id="c"></canvas>
+
+  <div class="hud left">
+    <div class="pill objective" id="objective">Explore Maplebrook</div>
+  </div>
+  <div class="hud right">
+    <button class="icon-btn" id="btn-quests" aria-label="Quest log (J)">📜</button>
+    <button class="icon-btn" id="btn-pouch" aria-label="Pouch (B)">🎒</button>
+    <button class="icon-btn" id="sound" aria-label="Sound on">🔊</button>
+    <a class="icon-btn" href="../#grab" aria-label="Back to ANNABLOX">✕</a>
+  </div>
+
+  <div id="banner" class="banner" hidden><small id="banner-kind">NEW QUEST</small><span id="banner-title"></span></div>
+
+  <!-- dialogue -->
+  <div id="dialog" class="dialog" hidden>
+    <div class="who" id="dialog-who"></div>
+    <div class="text" id="dialog-text"></div>
+    <div class="choices" id="dialog-choices"></div>
+  </div>
+
+  <!-- quest log -->
+  <div class="overlay" id="quests" hidden>
+    <div class="panel wide">
+      <h1>📜 Quest Log</h1>
+      <div id="quest-list" class="list"></div>
+      <div class="row"><button class="small" data-close>Close</button></div>
+    </div>
+  </div>
+
+  <!-- pouch -->
+  <div class="overlay" id="pouch" hidden>
+    <div class="panel wide">
+      <h1>🎒 Pouch</h1>
+      <div id="pouch-list" class="items"></div>
+      <p class="note" id="pouch-hint">Tap an item with a ⭐ to learn more.</p>
+      <div class="row"><button class="small" data-close>Close</button></div>
+    </div>
+  </div>
+
+  <!-- fact card -->
+  <div class="overlay" id="fact" hidden>
+    <div class="panel">
+      <div class="trophy" id="fact-emoji"></div>
+      <h1 id="fact-title"></h1>
+      <p class="sub">Did you know?</p>
+      <p id="fact-text" class="fact"></p>
+      <div class="row"><button class="big" data-close>Cool!</button></div>
+    </div>
+  </div>
+
+  <!-- claw machine -->
+  <div class="overlay" id="claw" hidden>
+    <div class="panel">
+      <h1>Claw Machine</h1>
+      <p class="sub" id="claw-msg">Drop the claw on the Hamato Doll!</p>
+      <div class="claw-box">
+        <div class="claw-rail"></div>
+        <div class="claw" id="claw-el"><div class="cable"></div><div class="grip">🦀</div></div>
+        <div class="prizes" id="prizes"></div>
+      </div>
+      <div class="row">
+        <button class="big" id="claw-drop">Drop!</button>
+      </div>
+      <div class="row"><button class="small" id="claw-quit">Leave</button></div>
+    </div>
+  </div>
+
+  <!-- start / cutoff -->
+  <div class="overlay" id="start">
+    <div class="panel">
+      <img class="logo" src="../assets/logo.svg" alt="ANNABLOX">
+      <h1>Grab 'n' Go Adventure <span class="tag">mini</span></h1>
+      <p class="sub">Help the people of Maplebrook, trade items and go on quests!</p>
+      <div class="how desktop-only">
+        <div><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> move · <kbd>Space</kbd> jump · <kbd>E</kbd> talk</div>
+        <div><kbd>J</kbd> quest log · <kbd>B</kbd> pouch</div>
+        <div>Look for people with a <b>!</b> over their head</div>
+      </div>
+      <div class="how touch-only">
+        <div>Left thumb: move · Jump button: jump</div>
+        <div>Tap the 👆 button to talk</div>
+        <div>Look for people with a <b>!</b> over their head</div>
+      </div>
+      <button class="big" id="go">Play!</button>
+      <div class="row" id="restart-row" hidden><button class="small" id="restart">Start over</button></div>
+      <p class="note">Your progress is saved in this browser.</p>
+    </div>
+  </div>
+
+  <div class="overlay" id="more" hidden>
+    <div class="panel">
+      <div class="trophy" id="more-icon">🎮</div>
+      <h1 id="more-title">To be continued…</h1>
+      <p id="more-text"></p>
+      <a class="big" href="https://www.roblox.com/games/start?placeId=107038112279116">Play on Roblox</a>
+      <div class="row">
+        <button class="small" data-close>Keep exploring</button>
+        <a class="small" href="../#grab">Back to ANNABLOX</a>
+      </div>
+    </div>
+  </div>
+
+  <noscript><div class="overlay"><div class="panel">This game needs JavaScript turned on.</div></div></noscript>
+  <script type="module" src="game.js"></script>
+</body>
+</html>

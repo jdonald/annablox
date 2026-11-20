@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="obby.css">
+  <link rel="stylesheet" href="../shared/engine.css">
   <script type="importmap">
     { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
   </script>
@@ -16,24 +16,19 @@
 <body>
   <canvas id="c"></canvas>
 
-  <div id="hud">
+  <div class="hud left">
     <div class="pill" id="stage">Stage 1/5</div>
     <div class="pill" id="timer">0:00</div>
   </div>
-  <div id="hud-right">
+  <div class="hud right">
     <button class="icon-btn" id="sound" aria-label="Sound on">🔊</button>
     <a class="icon-btn" href="../#obby" aria-label="Back to ANNABLOX">✕</a>
   </div>
-  <div id="toast"></div>
-  <div id="flash"></div>
-
-  <div id="joy"><div id="knob"></div></div>
-  <button id="jump" aria-label="Jump">Jump</button>
 
   <div class="overlay" id="start">
     <div class="panel">
       <img class="logo" src="../assets/logo.svg" alt="ANNABLOX">
-      <h1>Annabelle's Obby <span>mini</span></h1>
+      <h1>Annabelle's Obby <span class="tag">mini</span></h1>
       <p class="sub">5 stages: rainbow, forest, ocean, space and the Moon!</p>
       <div class="how desktop-only">
         <div><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or arrows to move</div>

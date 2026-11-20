@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <title>City of Houses — mini | ANNABLOX</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared/engine.css">
+  <style>
+    .rankbar { display: flex; flex-direction: column; gap: 2px; }
+    .rankbar small { font-weight: 500; opacity: .9; font-size: .8rem; }
+  </style>
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+  </script>
+</head>
+<body>
+  <canvas id="c"></canvas>
+
+  <div class="hud left">
+    <div class="pill money" id="cash">$0</div>
+    <div class="pill" id="rate">+$0/s</div>
+    <div class="pill gold rankbar"><span id="rank">Newcomer</span><small id="next"></small></div>
+  </div>
+  <div class="hud right">
+    <button class="icon-btn" id="sound" aria-label="Sound on">🔊</button>
+    <a class="icon-btn" href="../#city" aria-label="Back to ANNABLOX">✕</a>
+  </div>
+
+  <div class="overlay" id="start">
+    <div class="panel">
+      <img class="logo" src="../assets/logo.svg" alt="ANNABLOX">
+      <h1>City of Houses <span class="tag">mini</span></h1>
+      <p class="sub">Collect from mailboxes, buy houses, fill them up!</p>
+      <div class="how desktop-only">
+        <div><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> to move, <kbd>Space</kbd> to jump</div>
+        <div>Walk onto a glowing pad to buy it</div>
+        <div>Walk into a front door to go inside</div>
+      </div>
+      <div class="how touch-only">
+        <div>Left thumb: move · Jump button: jump</div>
+        <div>Walk onto a glowing pad to buy it</div>
+        <div>Walk into a front door to go inside</div>
+      </div>
+      <button class="big" id="go">Play!</button>
+      <div class="row" id="restart-row" hidden>
+        <button class="small" id="restart">Start over</button>
+      </div>
+      <p class="note">Your city is saved in this browser.</p>
+    </div>
+  </div>
+
+  <div class="overlay" id="more" hidden>
+    <div class="panel">
+      <div class="trophy" id="more-icon">🏡</div>
+      <h1 id="more-title">You're a Landlord!</h1>
+      <p id="more-text">Duplexes, pools, the Modern Villa and becoming Mayor are waiting in the full City of Houses on Roblox.</p>
+      <a class="big" href="https://www.roblox.com/games/start?placeId=124603604178082">Play on Roblox</a>
+      <div class="row">
+        <button class="small" id="keep">Keep building</button>
+        <a class="small" href="../#city">Back to ANNABLOX</a>
+      </div>
+    </div>
+  </div>
+
+  <noscript><div class="overlay"><div class="panel">This game needs JavaScript turned on.</div></div></noscript>
+  <script type="module" src="game.js"></script>
+</body>
+</html>

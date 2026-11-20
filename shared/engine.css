@@ -1,3 +1,5 @@
+/* Shared look for the ANNABLOX mini games: full-screen canvas, HUD pills, touch controls,
+   interaction prompt, toasts and overlay panels. */
 * { box-sizing: border-box; }
 html, body {
   margin: 0;
@@ -20,30 +22,35 @@ html, body {
   touch-action: none;
 }
 
-#hud, #hud-right {
+.hud {
   position: fixed;
   top: max(10px, env(safe-area-inset-top));
   display: flex;
   gap: 8px;
   z-index: 5;
+  flex-wrap: wrap;
+  max-width: calc(100vw - 120px);
 }
-#hud { left: max(10px, env(safe-area-inset-left)); }
-#hud-right { right: max(10px, env(safe-area-inset-right)); }
+.hud.left { left: max(10px, env(safe-area-inset-left)); }
+.hud.right { right: max(10px, env(safe-area-inset-right)); flex-wrap: nowrap; }
 .pill {
-  background: rgba(20, 24, 40, .55);
+  background: rgba(20, 24, 40, .6);
   color: #fff;
   font-weight: 600;
   padding: 6px 14px;
   border-radius: 999px;
   font-size: 1.05rem;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
+.pill.money { background: rgba(0, 130, 70, .82); font-size: 1.2rem; }
+.pill.gold { background: rgba(190, 130, 0, .85); }
 .icon-btn {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   border: 0;
-  background: rgba(20, 24, 40, .55);
+  background: rgba(20, 24, 40, .6);
   color: #fff;
   font-size: 1.1rem;
   display: grid;
@@ -51,16 +58,17 @@ html, body {
   text-decoration: none;
   cursor: pointer;
   font-family: inherit;
+  flex: none;
 }
 
-#toast {
+#eng-toast {
   position: fixed;
   left: 50%;
-  top: 22%;
+  top: 24%;
   transform: translate(-50%, -50%);
   color: #fff;
   font-weight: 700;
-  font-size: clamp(1.4rem, 5vw, 2.6rem);
+  font-size: clamp(1.3rem, 5vw, 2.4rem);
   text-align: center;
   -webkit-text-stroke: 1.5px #3c1e5a;
   text-shadow: 0 3px 0 #3c1e5a, 0 0 18px rgba(60, 30, 90, .5);
@@ -70,9 +78,9 @@ html, body {
   z-index: 4;
   width: 90vw;
 }
-#toast.show { opacity: 1; }
+#eng-toast.show { opacity: 1; }
 
-#flash {
+#eng-flash {
   position: fixed;
   inset: 0;
   background: #fff;
@@ -81,12 +89,12 @@ html, body {
   transition: opacity .4s;
   z-index: 3;
 }
-#flash.on { opacity: .8; transition: none; }
+#eng-flash.on { opacity: .8; transition: none; }
 
 /* touch controls */
-#joy, #jump { display: none; }
-body.touch #jump { display: block; }
-#joy {
+#eng-joy, #eng-jump { display: none; }
+body.touch #eng-jump { display: block; }
+#eng-joy {
   position: fixed;
   width: 120px;
   height: 120px;
@@ -97,8 +105,8 @@ body.touch #jump { display: block; }
   z-index: 6;
   pointer-events: none;
 }
-#joy.on { display: block; }
-#knob {
+#eng-joy.on { display: block; }
+#eng-knob {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -108,7 +116,7 @@ body.touch #jump { display: block; }
   border-radius: 50%;
   background: rgba(255, 255, 255, .85);
 }
-#jump {
+#eng-jump {
   position: fixed;
   right: max(22px, env(safe-area-inset-right));
   bottom: max(26px, env(safe-area-inset-bottom));
@@ -122,9 +130,50 @@ body.touch #jump { display: block; }
   z-index: 6;
   touch-action: none;
 }
-#jump.down { background: rgba(170, 20, 14, .9); transform: scale(.95); }
+#eng-jump.down { background: rgba(170, 20, 14, .9); transform: scale(.95); }
 
-/* overlays */
+/* interaction prompt (like a Roblox ProximityPrompt) */
+#eng-prompt {
+  position: fixed;
+  left: 50%;
+  bottom: max(28px, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 0;
+  background: rgba(20, 24, 40, .78);
+  color: #fff;
+  font: 600 1.1rem "Fredoka", sans-serif;
+  padding: 8px 18px 8px 8px;
+  border-radius: 14px;
+  z-index: 7;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+#eng-prompt[hidden] { display: none; }
+#eng-prompt kbd {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: #fff;
+  color: #1d2433;
+  font: 700 1.05rem "Fredoka", sans-serif;
+}
+body.touch #eng-prompt {
+  bottom: max(140px, calc(env(safe-area-inset-bottom) + 120px));
+  left: auto;
+  right: max(14px, env(safe-area-inset-right));
+  transform: none;
+  font-size: 1.15rem;
+  padding: 12px 18px 12px 10px;
+}
+body.touch #eng-prompt kbd { display: none; }
+body.touch #eng-prompt::before { content: "👆"; font-size: 1.3rem; }
+
+/* overlays and panels */
 .overlay {
   position: fixed;
   inset: 0;
@@ -148,7 +197,7 @@ body.touch #jump { display: block; }
 }
 .panel .logo { width: 210px; max-width: 70%; }
 .panel h1 { margin: 6px 0 4px; font-size: 1.8rem; line-height: 1.1; }
-.panel h1 span {
+.panel h1 span.tag {
   font-size: .9rem;
   vertical-align: middle;
   background: #e2231a;
@@ -206,3 +255,5 @@ body.touch .desktop-only { display: none; }
   cursor: pointer;
   text-decoration: none;
 }
+
+[hidden] { display: none !important; }
