@@ -299,7 +299,7 @@ export class Game {
       ...opts.extra,
     };
     if (!opts.noCollide) this.solids.push(s);
-    if (!opts.noCollide && opts.blockCamera !== false) this.blockers.push(mesh);
+    if (!opts.noCollide && opts.blockCamera !== false) { mesh.updateMatrixWorld(true); this.blockers.push(mesh); }
     return s;
   }
 
@@ -761,21 +761,25 @@ export class Game {
     const target = new THREE.Vector3(p.x, p.y + 3.5, p.z);
     const cp = Math.cos(this.cam.pitch);
     const dir = new THREE.Vector3(Math.sin(this.cam.yaw) * cp, Math.sin(this.cam.pitch), Math.cos(this.cam.yaw) * cp);
-    let dist = this.cam.dist;
-    if (this.cameraCollision && this.blockers.length) {
-      this._ray = this._ray || new THREE.Raycaster();
-      this._ray.set(target, dir);
-      this._ray.far = dist;
-      const hits = this._ray.intersectObjects(this.blockers, false);
-      if (hits.length) dist = Math.max(2.5, hits[0].distance - 0.6);
-    }
-    const want = target.clone().addScaledVector(dir, dist);
+    // The camera always eases smoothly toward its unobstructed spot (like the original Obby).
+    const want = target.clone().addScaledVector(dir, this.cam.dist);
     if (!this._camInit) { this._camPos = want.clone(); this._camInit = true; }
-    // pull in instantly when blocked, ease out otherwise
-    const curDist = this._camPos.distanceTo(target);
-    if (dist < curDist - 0.5) this._camPos.copy(want);
-    else this._camPos.lerp(want, 1 - Math.exp(-dt * 10));
+    this._camPos.lerp(want, 1 - Math.exp(-dt * 10));
     this.camera.position.copy(this._camPos);
+    // Walls only shorten the rendered camera, along the same smooth line of sight,
+    // so collision never makes the eased camera snap or jitter.
+    if (this.cameraCollision && this.blockers.length) {
+      const off = this._camPos.clone().sub(target);
+      const len = off.length();
+      if (len > 0.001) {
+        off.divideScalar(len);
+        this._ray = this._ray || new THREE.Raycaster();
+        this._ray.set(target, off);
+        this._ray.far = len;
+        const hits = this._ray.intersectObjects(this.blockers, false);
+        if (hits.length) this.camera.position.copy(target).addScaledVector(off, Math.max(2.5, hits[0].distance - 0.6));
+      }
+    }
     this.camera.lookAt(target);
     this.sun.position.set(p.x + 30, p.y + 60, p.z + 25);
     this.sun.target.position.copy(p);
