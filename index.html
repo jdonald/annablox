@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ANNABLOX — our Roblox games</title>
+  <meta name="description" content="Play Annabelle's Obby, City of Houses and Grab 'n' Go Adventure on Roblox — or try a mini version right in your browser.">
+  <meta property="og:title" content="ANNABLOX">
+  <meta property="og:description" content="Our three Roblox games. Come play with us!">
+  <meta property="og:image" content="https://jdonald.github.io/annablox/assets/img/obby-thumb.jpg">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <h1 class="logo"><img src="assets/logo.svg" alt="ANNABLOX" width="870" height="222"></h1>
+    <p class="tagline">Our Roblox games. Come play with us!</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Our games">
+    <button role="tab" id="tab-obby" aria-controls="obby" data-game="obby">
+      <img src="assets/img/obby-icon.jpg" alt="" width="48" height="48"><span>Annabelle's Obby</span>
+    </button>
+    <button role="tab" id="tab-city" aria-controls="city" data-game="city">
+      <img src="assets/img/city-icon.jpg" alt="" width="48" height="48"><span>City of Houses</span>
+    </button>
+    <button role="tab" id="tab-grab" aria-controls="grab" data-game="grab">
+      <img src="assets/img/grab-icon.jpg" alt="" width="48" height="48"><span>Grab 'n' Go Adventure</span>
+    </button>
+  </nav>
+
+  <main>
+    <section class="game" id="obby" role="tabpanel" aria-labelledby="tab-obby" hidden>
+      <div class="video-wrap">
+        <video src="assets/video/obby.mp4" poster="assets/img/obby-thumb.jpg" muted loop playsinline controls preload="metadata"></video>
+      </div>
+      <div class="info">
+        <img class="thumb" src="assets/img/obby-thumb.jpg" alt="Annabelle's Obby thumbnail" width="768" height="426">
+        <div class="details">
+          <h2>Annabelle's Obby</h2>
+          <a class="play" href="https://www.roblox.com/games/start?placeId=120324667325732">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Play in Roblox
+          </a>
+          <a class="rlink" href="https://www.roblox.com/games/120324667325732/Annabelles-Obby" target="_blank" rel="noopener">See it on roblox.com ↗</a>
+        </div>
+      </div>
+      <div class="mini">
+        <div>
+          <strong>No 16+ Roblox account?</strong>
+          <span>Play a mini version right here in your browser — works on phones, tablets and computers.</span>
+        </div>
+        <a class="mini-btn" href="obby/">Play the mini Obby</a>
+      </div>
+    </section>
+
+    <section class="game" id="city" role="tabpanel" aria-labelledby="tab-city" hidden>
+      <div class="video-wrap">
+        <video src="assets/video/city.mp4" poster="assets/img/city-thumb.jpg" muted loop playsinline controls preload="metadata"></video>
+      </div>
+      <div class="info">
+        <img class="thumb" src="assets/img/city-thumb.jpg" alt="City of Houses thumbnail" width="768" height="432">
+        <div class="details">
+          <h2>City of Houses</h2>
+          <a class="play" href="https://www.roblox.com/games/start?placeId=124603604178082">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Play in Roblox
+          </a>
+          <a class="rlink" href="https://www.roblox.com/games/124603604178082/City-of-Houses" target="_blank" rel="noopener">See it on roblox.com ↗</a>
+        </div>
+      </div>
+      <div class="mini soon">
+        <div>
+          <strong>No 16+ Roblox account?</strong>
+          <span>A mini browser version of City of Houses is coming soon.</span>
+        </div>
+        <span class="mini-btn" aria-disabled="true">Coming soon</span>
+      </div>
+    </section>
+
+    <section class="game" id="grab" role="tabpanel" aria-labelledby="tab-grab" hidden>
+      <div class="video-wrap">
+        <video src="assets/video/grab.mp4" poster="assets/img/grab-thumb.jpg" muted loop playsinline controls preload="metadata"></video>
+      </div>
+      <div class="info">
+        <img class="thumb" src="assets/img/grab-thumb.jpg" alt="Grab 'n' Go Adventure thumbnail" width="768" height="402">
+        <div class="details">
+          <h2>Grab 'n' Go Adventure</h2>
+          <a class="play" href="https://www.roblox.com/games/start?placeId=107038112279116">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Play in Roblox
+          </a>
+          <a class="rlink" href="https://www.roblox.com/games/107038112279116/Grab-n-Go-Adventure" target="_blank" rel="noopener">See it on roblox.com ↗</a>
+        </div>
+      </div>
+      <div class="mini soon">
+        <div>
+          <strong>No 16+ Roblox account?</strong>
+          <span>A mini browser version of Grab 'n' Go Adventure is coming soon.</span>
+        </div>
+        <span class="mini-btn" aria-disabled="true">Coming soon</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Made by the ANNABLOX crew. ANNABLOX is a fan site and isn't made by or connected to Roblox Corporation.
+  </footer>
+
+  <script src="site.js"></script>
+</body>
+</html>

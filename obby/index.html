@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <title>Annabelle's Obby — mini | ANNABLOX</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="obby.css">
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+  </script>
+</head>
+<body>
+  <canvas id="c"></canvas>
+
+  <div id="hud">
+    <div class="pill" id="stage">Stage 1/5</div>
+    <div class="pill" id="timer">0:00</div>
+  </div>
+  <div id="hud-right">
+    <button class="icon-btn" id="sound" aria-label="Sound on">🔊</button>
+    <a class="icon-btn" href="../#obby" aria-label="Back to ANNABLOX">✕</a>
+  </div>
+  <div id="toast"></div>
+  <div id="flash"></div>
+
+  <div id="joy"><div id="knob"></div></div>
+  <button id="jump" aria-label="Jump">Jump</button>
+
+  <div class="overlay" id="start">
+    <div class="panel">
+      <img class="logo" src="../assets/logo.svg" alt="ANNABLOX">
+      <h1>Annabelle's Obby <span>mini</span></h1>
+      <p class="sub">5 stages: rainbow, forest, ocean, space and the Moon!</p>
+      <div class="how desktop-only">
+        <div><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or arrows to move</div>
+        <div><kbd>Space</kbd> to jump (hold it to keep jumping)</div>
+        <div>Drag the mouse to look around</div>
+      </div>
+      <div class="how touch-only">
+        <div>Left thumb: move</div>
+        <div>Jump button: jump (hold to keep jumping)</div>
+        <div>Swipe the right side: look around</div>
+      </div>
+      <button class="big" id="go">Play!</button>
+      <p class="note">This is a tiny practice version. The real game is on Roblox.</p>
+    </div>
+  </div>
+
+  <div class="overlay" id="win" hidden>
+    <div class="panel">
+      <div class="trophy">🏆</div>
+      <h1>You beat the Obby!</h1>
+      <p class="sub" id="win-stats"></p>
+      <p>Now try the real one on Roblox — it has even more to do, like the Jetpack Boost!</p>
+      <a class="big" href="https://www.roblox.com/games/start?placeId=120324667325732">Play on Roblox</a>
+      <div class="row">
+        <button class="small" id="again">Play again</button>
+        <a class="small" href="../#obby">Back to ANNABLOX</a>
+      </div>
+    </div>
+  </div>
+
+  <noscript><div class="overlay"><div class="panel">This game needs JavaScript turned on.</div></div></noscript>
+  <script type="module" src="game.js"></script>
+</body>
+</html>
