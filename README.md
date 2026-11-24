@@ -20,7 +20,7 @@ https://jdonald.github.io/annablox
 | `city/` | Mini City of Houses: collect rent, buy cottages, rebuild as a Two-Story, and fill it with a TV, kitchen, bedroom, arcade and more. |
 | `grab/` | Mini Grab 'n' Go Adventure: the start of each storyline, with a link to Roblox where the mini stops. |
 
-The minis are for friends who don't have a 16+ Roblox account yet. They work with keyboard/mouse and touch, and save progress in the browser.
+The Obby and City minis are for friends who don't have a 16+ Roblox account yet (Grab 'n' Go is open to all Roblox players, so its mini is just a quick taste). They work with keyboard/mouse and touch, and save progress in the browser.
 
 No build step: everything is plain HTML/CSS/JS. three.js is loaded from jsDelivr.
 
