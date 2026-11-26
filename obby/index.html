@@ -12,6 +12,16 @@
   <script type="importmap">
     { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
   </script>
+  <!-- Vercel Web Analytics (only on the Vercel deployment, not GitHub Pages or local testing) -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    if (!/(^|\.)github\.io$|^localhost$|^127\.0\.0\.1$/.test(location.hostname)) {
+      const s = document.createElement('script');
+      s.defer = true;
+      s.src = '/_vercel/insights/script.js';
+      document.head.appendChild(s);
+    }
+  </script>
 </head>
 <body>
   <canvas id="c"></canvas>
